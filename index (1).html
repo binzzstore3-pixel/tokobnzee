@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#050a18">
+<title>BNZEE SHOP </title>
+<style>
+:root{--bg:#050a18;--sec:#0a1430;--card:#0e1a3a;--bd:rgba(120,160,255,.16);--pri:#2f7bff;--pri2:#5aa0ff;--tx:#f1f5ff;--mut:#8da2c9;--ok:#25D366;--err:#ff5a6a}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-bottom:env(safe-area-inset-bottom)}
+button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer;border:0;background:none}
+a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:auto;padding:0 18px}
+.btn{background:linear-gradient(135deg,var(--pri),#1c54d4);color:#fff;padding:10px 18px;border-radius:12px;font-weight:600;display:inline-flex;gap:6px;align-items:center;justify-content:center;transition:.2s}
+.btn:hover{box-shadow:0 0 22px rgba(47,123,255,.55);transform:translateY(-1px)}
+.btn.g{background:rgba(255,255,255,.06);border:1px solid var(--bd)}.btn.wa{background:var(--ok);color:#06210f}.btn.d{background:var(--err)}.btn.s{padding:7px 12px;font-size:13px}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+#loader{position:fixed;inset:0;background:var(--bg);display:grid;place-items:center;z-index:200;transition:.5s}
+#loader.off{opacity:0;visibility:hidden}
+.ring{width:56px;height:56px;border-radius:50%;border:4px solid var(--bd);border-top-color:var(--pri);animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+header{position:sticky;top:0;z-index:50;background:rgba(5,10,24,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--bd);padding-top:env(safe-area-inset-top)}
+.nav{display:flex;align-items:center;gap:12px;height:66px}
+.logo{font-weight:900;font-size:21px;letter-spacing:1px}.logo b{color:var(--pri2)}
+nav{display:flex;gap:4px;margin-left:16px;flex:1}
+nav a{padding:8px 12px;border-radius:10px;color:var(--mut);font-weight:500}nav a:hover{background:rgba(255,255,255,.06);color:var(--tx)}
+.ib{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.06);display:grid;place-items:center;position:relative;font-size:18px}
+.bdg{position:absolute;top:-5px;right:-5px;background:var(--pri);font-size:11px;min-width:18px;height:18px;border-radius:9px;display:grid;place-items:center;font-weight:700}
+#bm{display:none}
+@media(max-width:820px){#bm{display:grid}nav{position:absolute;top:calc(66px + env(safe-area-inset-top));left:0;right:0;flex-direction:column;background:var(--sec);padding:10px;margin:0;display:none;border-bottom:1px solid var(--bd)}nav.on{display:flex}.nav .sp{flex:1}}
+.hero{margin:22px 0;border-radius:26px;padding:clamp(28px,6vw,64px);background:radial-gradient(circle at 85% 20%,rgba(47,123,255,.55),transparent 50%),linear-gradient(135deg,#0a1840,#050a18);border:1px solid var(--bd);position:relative;overflow:hidden}
+.hero::after{content:"🛍️";position:absolute;right:5%;bottom:-10px;font-size:clamp(90px,18vw,200px);opacity:.18;animation:fl 5s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-14px)}}
+.tag{display:inline-block;background:rgba(47,123,255,.2);color:var(--pri2);padding:5px 12px;border-radius:999px;font-size:13px;font-weight:600}
+.hero h1{font-size:clamp(30px,6vw,56px);line-height:1.1;margin:14px 0 10px;max-width:640px}
+.hero p{color:var(--mut);max-width:520px;margin:0 0 20px}
+.sbar{display:flex;gap:8px;margin:18px 0;flex-wrap:wrap}
+.sbar input{flex:1;min-width:200px;padding:13px 16px;border-radius:14px;background:var(--card);border:1px solid var(--bd);outline:0}
+.sbar input:focus,.fm input:focus,.fm select:focus,.fm textarea:focus{border-color:var(--pri)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.chip{padding:8px 16px;border-radius:999px;background:var(--card);border:1px solid var(--bd);white-space:nowrap;color:var(--mut)}
+.chip.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+h2.t{font-size:clamp(22px,4vw,30px);margin:34px 0 14px;display:flex;align-items:center;gap:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.pc{background:var(--card);border:1px solid var(--bd);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:.25s}
+.pc:hover{transform:translateY(-4px);border-color:var(--pri);box-shadow:0 12px 30px rgba(47,123,255,.2)}
+.im{aspect-ratio:1;background:var(--sec);position:relative;overflow:hidden}
+.im img{width:100%;height:100%;object-fit:cover}
+.ph{width:100%;height:100%;display:grid;place-items:center;font-size:64px;font-weight:800;color:var(--pri2);background:linear-gradient(135deg,#10224f,#0a1430)}
+.sb{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.7);padding:3px 10px;border-radius:999px;font-size:12px}.sb.out{background:var(--err)}
+.pb{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.pb small{color:var(--mut)}.pb h3{margin:0;font-size:16px}.pr{font-weight:800;color:var(--pri2);font-size:17px}
+.pa{display:flex;gap:6px;margin-top:auto;padding-top:8px}.pa .btn{flex:1}
+.sk{height:300px;border-radius:18px;background:linear-gradient(90deg,var(--card),#162a5a,var(--card));background-size:200% 100%;animation:sh 1.2s infinite}
+@keyframes sh{to{background-position:-200% 0}}
+.empty{grid-column:1/-1;text-align:center;color:var(--mut);padding:36px}
+.about{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:10px}
+.about>div{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:20px}
+footer{margin-top:50px;border-top:1px solid var(--bd);background:var(--sec);padding:30px 0 90px}
+footer .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;color:var(--mut)}footer b{color:var(--tx)}
+#wafab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:58px;height:58px;border-radius:50%;background:var(--ok);display:grid;place-items:center;font-size:28px;box-shadow:0 8px 24px rgba(37,211,102,.5);z-index:40;animation:pl 2.5s infinite}
+@keyframes pl{50%{box-shadow:0 0 0 14px rgba(37,211,102,0)}}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:70;display:none}.ov.on{display:block}
+#drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--sec);z-index:80;transform:translateX(105%);transition:.3s;display:flex;flex-direction:column;padding:18px;padding-bottom:calc(18px + env(safe-area-inset-bottom))}
+#drawer.on{transform:none}
+#cit{flex:1;overflow:auto;margin:12px 0}
+.ci{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)}
+.ci .im{width:60px;height:60px;border-radius:12px;flex:none;aspect-ratio:auto}.ci .ph{font-size:24px}.ci .i{flex:1;font-size:14px;min-width:0}
+.q{display:flex;align-items:center;gap:6px}.q button{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.08)}
+.tot{display:flex;justify-content:space-between;font-weight:800;font-size:18px;margin-bottom:10px}
+.modal{position:fixed;inset:0;z-index:90;display:none;place-items:center;padding:14px;background:rgba(0,0,0,.65)}.modal.on{display:grid}
+.mb{background:var(--sec);border:1px solid var(--bd);border-radius:22px;padding:20px;width:min(560px,100%);max-height:92dvh;overflow:auto}
+.mb h2{margin:0 0 10px}
+.dg{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:600px){.dg{grid-template-columns:1fr}}
+.fm label{display:block;font-size:13px;color:var(--mut);margin-top:10px}
+.fm input:not([type=file]),.fm select,.fm textarea{width:100%;margin-top:4px;padding:11px 13px;border-radius:11px;background:var(--card);border:1px solid var(--bd);outline:0}
+.fm select option{background:var(--sec)}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+#adm{display:none;padding:22px 0 60px}
+.tabs{display:flex;gap:6px;margin:14px 0;flex-wrap:wrap}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:10px 8px;border-bottom:1px solid var(--bd);text-align:left}
+.tw{overflow-x:auto;background:var(--card);border-radius:16px;border:1px solid var(--bd);padding:6px}
+.th{width:44px;height:44px;border-radius:10px;overflow:hidden}.th .ph{font-size:18px}.th img{width:100%;height:100%;object-fit:cover}
+.warn{background:rgba(255,200,60,.1);border:1px solid rgba(255,200,60,.4);color:#ffe08a;padding:12px;border-radius:12px;font-size:13px;margin:10px 0}
+#toasts{position:fixed;top:calc(12px + env(safe-area-inset-top));left:12px;right:12px;z-index:300;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none}
+.toast{background:var(--card);border:1px solid var(--pri);padding:11px 16px;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,.5);max-width:440px;animation:in .3s}.toast.err{border-color:var(--err)}.toast.ok{border-color:var(--ok)}
+@keyframes in{from{opacity:0;transform:translateY(-10px)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="loader"><div class="ring"></div></div>
+<header><div class="wrap nav">
+ <a href="#home" class="logo">BNZEE <b>SHOP</b></a>
+ <nav id="menu"><a href="#home">Home</a><a href="#produk">Produk</a><a href="#kategori">Kategori</a><a href="#tentang">Tentang Kami</a><a href="#kontak">Kontak</a></nav>
+ <span class="sp"></span>
+ <a class="ib" href="#admin" id="aLink" title="Admin" aria-label="Admin">🔐</a>
+ <button class="ib" id="bCart" aria-label="Keranjang">🛒<span class="bdg" id="cnt">0</span></button>
+ <button class="ib" id="bm" aria-label="Menu">☰</button>
+</div></header>
+
+<main id="store" class="wrap">
+ <section class="hero" id="home"><span class="tag" id="hTag">🔥 Promo Spesial</span><h1 id="hT">Keset Premium, Harga Bersahabat</h1><p id="hS">Belanja mudah, pesan langsung lewat WhatsApp dan dapatkan respons cepat dari penjual.</p><a class="btn" href="#produk">Belanja Sekarang →</a></section>
+ <div class="sbar"><input id="q" type="search" placeholder="🔍 Cari produk…" aria-label="Cari produk"></div>
+ <div id="kategori" class="chips"></div>
+ <h2 class="t">🆕 Produk Terbaru</h2><div class="grid" id="gNew"></div>
+ <h2 class="t">🔥 Produk Terlaris</h2><div class="grid" id="gBest"></div>
+ <h2 class="t" id="produk">📦 Semua Produk</h2><div class="grid" id="gAll"></div>
+ <h2 class="t" id="tentang">Tentang Kami</h2>
+ <div class="about"><div><b>🏬 <span id="aName">BNZEE SHOP</span></b><p id="aTxt" style="color:var(--mut)"></p></div><div><b>✅ Kenapa Belanja Di Sini?</b><p style="color:var(--mut)">Produk original, stok real-time, pesan cepat lewat WhatsApp, dan penjual yang responsif.</p></div></div>
+</main>
+
+<section id="adm" class="wrap" aria-label="Dashboard admin"></section>
+
+<footer id="kontak"><div class="wrap">
+ <div><b>BNZEE SHOP</b><p id="fAbout" style="margin:6px 0"></p></div>
+ <div><b>Kontak</b><p style="margin:6px 0">📍 <span id="fAddr"></span><br>✉️ <span id="fMail"></span><br>💬 <a id="fWa" href="#" target="_blank" rel="noopener" style="color:var(--pri2)">Chat WhatsApp</a></p></div>
+ <div><b>Navigasi</b><p style="margin:6px 0"><a href="#home">Home</a> · <a href="#produk">Produk</a> · <a href="#kategori">Kategori</a> · <a href="#admin">Admin</a></p></div>
+</div></footer>
+
+<a id="wafab" href="#" target="_blank" rel="noopener" aria-label="Chat WhatsApp">💬</a>
+<div class="ov" id="ov"></div>
+<aside id="drawer" aria-label="Keranjang"><div style="display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0">Keranjang</h2><button class="ib" id="cClose" aria-label="Tutup">✕</button></div>
+<div id="cit"></div><div class="tot"><span>Total</span><span id="ctot">Rp0</span></div>
+<button class="btn wa" id="bCo">💬 Pesan Sekarang via WhatsApp</button></aside>
+
+<div class="modal" id="mDet"><div class="mb" id="detBox"></div></div>
+<div class="modal" id="mCo"><form class="mb fm" id="coForm" novalidate><h2>Data Pemesan</h2>
+<label>Nama lengkap<input name="n" maxlength="60" required></label>
+<label>No. WhatsApp / HP<input name="h" type="tel" maxlength="16" required></label>
+<label>Alamat lengkap<textarea name="a" rows="3" maxlength="250" required></textarea></label>
+<label>Catatan (opsional)<input name="t" maxlength="150"></label>
+<div class="tot" style="margin-top:14px"><span>Total</span><span id="coTot"></span></div>
+<div class="acts"><button class="btn wa" type="submit" id="coBtn">Kirim ke WhatsApp</button><button class="btn g" type="button" data-close>Batal</button></div></form></div>
+<div class="modal" id="mPf"><form class="mb fm" id="pForm"><h2 id="pfT">Produk</h2>
+<label>Nama produk<input name="name" maxlength="100" required></label>
+<div class="dg"><label>Harga (Rp)<input name="price" type="number" min="0" step="1" required></label><label>Stok<input name="stock" type="number" min="0" step="1" required></label></div>
+<div class="dg"><label>Kategori<select name="category"></select></label><label>Terjual<input name="sold" type="number" min="0" step="1" value="0"></label></div>
+<label>Deskripsi lengkap<textarea name="desc" rows="4" maxlength="2000" required></textarea></label>
+<label>Foto produk (maks 2 MB, otomatis dikecilkan)<input name="file" type="file" accept="image/*"></label>
+<div class="acts"><button class="btn" type="submit" id="pfBtn">Simpan</button><button class="btn g" type="button" data-close>Batal</button></div></form></div>
+<div id="toasts" aria-live="polite"></div>
+
+<script type="module">
+"use strict";
+/* ============ KONFIGURASI (UBAH DI SINI) ============ */
+const CONFIG={
+ waNumber:"6283129415470",            // nomor WhatsApp penjual (format 62…); bisa juga diatur dari dashboard admin
+ firebase:{apiKey:"AIzaSyDtIHk8_RoWbj60s7xv7xPwtAVavwKUbUs",authDomain:"bnzee-shop.firebaseapp.com",projectId:"bnzee-shop",storageBucket:"bnzee-shop.firebasestorage.app",messagingSenderId:"789897606524",appId:"1:789897606524:web:4583ec6aabd9a34f2120f9"}
+};
+const LIVE=!CONFIG.firebase.apiKey.startsWith("ISI");   // false = mode demo (data contoh, admin nonaktif)
+/* ====================================================== */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const rp=n=>"Rp"+Number(n||0).toLocaleString("id-ID");
+const DEF={name:"BNZEE SHOP",wa:CONFIG.waNumber,address:"Jl. Contoh No. 1, Indonesia",email:"halo@bnzee.shop",about:"BNZEE SHOP adalah toko online gadget dan aksesoris terpercaya.",hero:"Gadget Premium, Harga Bersahabat",tag:"🔥 Promo Spesial",categories:["Audio","Gadget","Aksesoris"]};
+const DEMO=[["Earbuds Nova X","Audio",350000,25,40,"TWS dengan ANC, baterai 30 jam, tahan air IPX5."],["Headphone Studio Pro","Audio",780000,8,22,"Headphone over-ear suara jernih dengan bass dalam."],["Smartwatch Orbit","Gadget",620000,15,55,"Layar AMOLED, pemantau detak jantung, baterai 7 hari."],["Power Bank 20000mAh","Aksesoris",280000,40,90,"Fast charging 22.5W, dua port USB dan satu USB-C."],["Speaker Mini Pulse","Audio",240000,0,31,"Speaker bluetooth portabel, suara 360 derajat."],["Kabel USB-C Braided","Aksesoris",65000,120,200,"Kabel 1,5 m tahan lama, mendukung pengisian cepat 60W."],["Mouse Wireless Slim","Gadget",150000,30,48,"Mouse senyap, koneksi 2.4G dan Bluetooth."],["Case HP Armor","Aksesoris",90000,60,75,"Case anti-benturan dengan desain elegan."]]
+ .map((a,i)=>({id:"d"+i,name:a[0],category:a[1],price:a[2],stock:a[3],sold:a[4],desc:a[5],image:"",createdAt:Date.now()-i*86400000}));
+let P=[],S={...DEF},cart={},cat="Semua",fb=null,isAdmin=false,editId=null,detQty=1;
+try{cart=JSON.parse(localStorage.getItem("bz-cart"))||{}}catch(e){cart={}}
+const saveCart=()=>{try{localStorage.setItem("bz-cart",JSON.stringify(cart))}catch(e){}};
+function toast(m,t){const e=document.createElement("div");e.className="toast "+(t||"");e.textContent=m;$("#toasts").appendChild(e);setTimeout(()=>{e.style.opacity=0;e.style.transition=".3s";setTimeout(()=>e.remove(),300)},3200)}
+function waUrl(text){let n=String(S.wa||CONFIG.waNumber).replace(/\D/g,"");if(n.startsWith("0"))n="62"+n.slice(1);return"https://wa.me/"+n+"?text="+encodeURIComponent(text)}
+function openWa(text){const w=window.open(waUrl(text),"_blank","noopener");if(!w)location.href=waUrl(text)}
+
+/* ============ Firebase ============ */
+async function initFirebase(){
+ if(!LIVE)return;
+ const B="https://www.gstatic.com/firebasejs/10.12.2/";
+ const [a,au,fs,st]=await Promise.all([import(B+"firebase-app.js"),import(B+"firebase-auth.js"),import(B+"firebase-firestore.js"),import(B+"firebase-storage.js")]);
+ const app=a.initializeApp(CONFIG.firebase);
+ fb={auth:au.getAuth(app),db:fs.getFirestore(app),stg:st.getStorage(app),au,fs,st};
+}
+async function loadSettings(){
+ if(!fb)return;
+ try{const s=await fb.fs.getDoc(fb.fs.doc(fb.db,"settings","store"));if(s.exists())S={...DEF,...s.data()}}catch(e){toast("Gagal memuat info toko: "+e.code,"err")}
+}
+async function loadProducts(){
+ if(!fb){P=DEMO.map(x=>({...x}));return}
+ try{const s=await fb.fs.getDocs(fb.fs.collection(fb.db,"products"));P=s.docs.map(d=>({id:d.id,...d.data()}))}
+ catch(e){P=[];toast("Gagal memuat produk: "+(e.code||e.message),"err")}
+}
+async function getFresh(id){  // validasi harga & stok langsung dari database
+ if(!fb)return P.find(p=>p.id===id)||null;
+ const d=await fb.fs.getDoc(fb.fs.doc(fb.db,"products",id));return d.exists()?{id:d.id,...d.data()}:null;
+}
+
+/* ============ Render toko ============ */
+const img=p=>p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy">`:`<div class="ph">${esc((p.name||"?")[0].toUpperCase())}</div>`;
+function card(p){const out=p.stock<1;return `<article class="pc"><div class="im">${img(p)}<span class="sb${out?" out":""}">${out?"Habis":"Stok "+p.stock}</span></div><div class="pb"><small>${esc(p.category)}</small><h3>${esc(p.name)}</h3><div class="pr">${rp(p.price)}</div><div class="pa"><button class="btn g s" data-a="det" data-id="${esc(p.id)}">Detail</button><button class="btn s" data-a="buy" data-id="${esc(p.id)}"${out?" disabled":""}>Beli Sekarang</button><button class="btn wa s" data-a="ask" data-id="${esc(p.id)}" aria-label="Hubungi penjual" style="flex:0 0 40px">💬</button></div></div></article>`}
+function fill(id,l){$(id).innerHTML=l.length?l.map(card).join(""):`<div class="empty">😕 Belum ada produk.</div>`}
+function renderStore(){
+ document.title=S.name+" – Toko Online";
+ document.querySelector(".logo").innerHTML=esc(S.name).replace(/^(\S+)/,"$1 <b>")+"</b>";
+ $("#hT").textContent=S.hero;$("#hTag").textContent=S.tag;$("#aName").textContent=S.name;$("#aTxt").textContent=S.about;$("#fAbout").textContent=S.about;$("#fAddr").textContent=S.address;$("#fMail").textContent=S.email;
+ $("#fWa").href=$("#wafab").href=waUrl("Halo "+S.name+", saya ingin bertanya.");
+ const cs=["Semua",...(S.categories||[])];if(!cs.includes(cat))cat="Semua";
+ $("#kategori").innerHTML=cs.map(c=>`<button class="chip${c===cat?" on":""}" data-cat="${esc(c)}">${esc(c)}</button>`).join("");
+ const q=$("#q").value.trim().toLowerCase();
+ fill("#gNew",[...P].sort((a,b)=>(b.createdAt||0)-(a.createdAt||0)).slice(0,4));
+ fill("#gBest",[...P].sort((a,b)=>(b.sold||0)-(a.sold||0)).slice(0,4));
+ fill("#gAll",P.filter(p=>(cat==="Semua"||p.category===cat)&&(p.name+" "+p.desc).toLowerCase().includes(q)));
+}
+function renderCart(){
+ const ids=Object.keys(cart).filter(id=>P.some(p=>p.id===id));let tot=0,n=0;
+ $("#cit").innerHTML=ids.length?ids.map(id=>{const p=P.find(x=>x.id===id),q=cart[id];tot+=p.price*q;n+=q;return`<div class="ci"><div class="im">${img(p)}</div><div class="i"><b>${esc(p.name)}</b><br>${rp(p.price)}</div><div class="q"><button data-a="dec" data-id="${esc(id)}" aria-label="Kurangi">−</button><b>${q}</b><button data-a="inc" data-id="${esc(id)}" aria-label="Tambah">+</button><button data-a="rm" data-id="${esc(id)}" aria-label="Hapus">🗑️</button></div></div>`}).join(""):`<div class="empty">🛒<br>Keranjang kosong.</div>`;
+ $("#ctot").textContent=$("#coTot").textContent=rp(tot);$("#cnt").textContent=n;saveCart();
+}
+function setQty(id,d){const p=P.find(x=>x.id===id);if(!p)return;const q=(cart[id]||0)+d;
+ if(q>p.stock){toast("Stok hanya tersisa "+p.stock,"err");return}
+ if(q<=0)delete cart[id];else cart[id]=q;renderCart()}
+const drawer=v=>{$("#drawer").classList.toggle("on",v);$("#ov").classList.toggle("on",v)};
+function openDetail(id){
+ const p=P.find(x=>x.id===id);if(!p)return;detQty=1;
+ $("#detBox").innerHTML=`<div class="dg"><div class="im" style="border-radius:16px">${img(p)}</div><div><small style="color:var(--mut)">${esc(p.category)}</small><h2>${esc(p.name)}</h2><div class="pr" style="font-size:24px">${rp(p.price)}</div><p style="color:var(--mut);white-space:pre-line">${esc(p.desc)}</p><p>Stok: <b>${p.stock}</b> · Terjual: ${p.sold||0}</p><div class="q" style="margin-bottom:12px"><button data-a="dq" data-d="-1" aria-label="Kurangi">−</button><b id="dq">1</b><button data-a="dq" data-d="1" aria-label="Tambah">+</button></div><div class="acts" style="margin:0"><button class="btn" data-a="dadd" data-id="${esc(id)}"${p.stock<1?" disabled":""}>🛒 Keranjang</button><button class="btn wa" data-a="ask" data-id="${esc(id)}">💬 Hubungi Penjual</button></div></div></div><div class="acts"><button class="btn g" data-close>Tutup</button></div>`;
+ $("#mDet").classList.add("on");
+}
+async function doCheckout(f){
+ const n=f.n.value.trim(),h=f.h.value.trim(),a=f.a.value.trim(),t=f.t.value.trim();
+ if(n.length<2||!/^[\p{L}\s.'-]+$/u.test(n))return toast("Nama tidak valid.","err");
+ if(!/^[0-9+\s-]{9,16}$/.test(h))return toast("Nomor HP tidak valid.","err");
+ if(a.length<8)return toast("Alamat terlalu pendek.","err");
+ const ids=Object.keys(cart);if(!ids.length)return toast("Keranjang kosong.","err");
+ const btn=$("#coBtn");btn.disabled=true;btn.textContent="Memeriksa stok & harga…";
+ try{
+  let changed=false,lines=[],total=0,i=0;
+  for(const id of ids){
+   const fr=await getFresh(id);
+   if(!fr||fr.stock<1){delete cart[id];changed=true;continue}
+   const old=P.find(x=>x.id===id);
+   if(old&&Number(old.price)!==Number(fr.price))changed=true;
+   if(old)Object.assign(old,fr);else P.push(fr);
+   if(cart[id]>fr.stock){cart[id]=fr.stock;changed=true}
+  }
+  const ids2=Object.keys(cart);
+  if(changed||!ids2.length){renderCart();renderStore();return toast("Harga/stok produk diperbarui. Periksa kembali keranjang Anda.","err")}
+  for(const id of ids2){const p=P.find(x=>x.id===id),q=cart[id],s=p.price*q;total+=s;lines.push(`${++i}. ${p.name}\n   ${q} x ${rp(p.price)} = ${rp(s)}`)}
+  const msg=`*PESANAN BARU - ${S.name}*\n\n*Data Pemesan*\nNama: ${n}\nNo. HP: ${h}\nAlamat: ${a}\n\n*Daftar Pesanan*\n${lines.join("\n")}\n\n*TOTAL: ${rp(total)}*${t?"\nCatatan: "+t:""}\n\nTerima kasih! 🙏`;
+  openWa(msg);cart={};renderCart();$("#mCo").classList.remove("on");f.reset();toast("Pesanan diteruskan ke WhatsApp ✅","ok");
+ }catch(e){toast("Gagal memeriksa pesanan: "+(e.code||e.message),"err")}
+ finally{btn.disabled=false;btn.textContent="Kirim ke WhatsApp"}
+}
+
+/* ============ Admin ============ */
+const A=()=>$("#adm");
+function route(){
+ const adm=location.hash==="#admin";$("#store").style.display=adm?"none":"";$("#adm").style.display=adm?"block":"none";
+ if(adm)renderAdmin();
+}
+function renderAdmin(){
+ if(!LIVE)return A().innerHTML=`<h2>Dashboard Admin</h2><div class="warn">Mode demo: Firebase belum dikonfigurasi. Isi <code>CONFIG.firebase</code> di bagian atas script, lalu ikuti PANDUAN.md.</div><a class="btn g" href="#home">← Kembali ke toko</a>`;
+ if(!isAdmin)return A().innerHTML=`<h2>Login Admin</h2><form class="fm" id="lg" style="max-width:380px"><label>Email<input name="e" type="email" required autocomplete="username"></label><label>Password<input name="p" type="password" required autocomplete="current-password"></label><div class="acts"><button class="btn" type="submit">Masuk</button><a class="btn g" href="#home">Kembali</a></div></form>`;
+ A().innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px"><h2>Dashboard Admin</h2><div class="acts" style="margin:0"><a class="btn g s" href="#home">Lihat Toko</a><button class="btn d s" data-a="out">Logout</button></div></div>
+ <div class="tabs"><button class="btn s" data-tab="p">📦 Produk</button><button class="btn g s" data-tab="c">🏷️ Kategori</button><button class="btn g s" data-tab="s">🏬 Info Toko</button></div><div id="tab"></div>`;
+ tab("p");
+}
+function tab(t){
+ document.querySelectorAll("[data-tab]").forEach(b=>b.className="btn s"+(b.dataset.tab===t?"":" g"));
+ const T=$("#tab");
+ if(t==="p")T.innerHTML=`<button class="btn" data-a="padd" style="margin-bottom:12px">+ Tambah Produk</button><div class="tw"><table><tr><th></th><th>Nama</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr>${P.map(p=>`<tr><td><div class="th">${img(p)}</div></td><td>${esc(p.name)}<br><small style="color:var(--mut)">${esc(p.category)}</small></td><td>${rp(p.price)}</td><td>${p.stock}</td><td><button class="btn g s" data-a="pedit" data-id="${esc(p.id)}">Edit</button> <button class="btn d s" data-a="pdel" data-id="${esc(p.id)}">Hapus</button></td></tr>`).join("")||`<tr><td colspan="5">Belum ada produk.</td></tr>`}</table></div>`;
+ else if(t==="c")T.innerHTML=`<form class="fm" id="cf" style="display:flex;gap:8px;align-items:end"><label style="flex:1;margin:0">Kategori baru<input name="c" maxlength="30" required></label><button class="btn" type="submit">Tambah</button></form><div class="tw" style="margin-top:12px"><table>${(S.categories||[]).map((c,i)=>`<tr><td>${esc(c)}</td><td style="text-align:right"><button class="btn d s" data-a="cdel" data-i="${i}">Hapus</button></td></tr>`).join("")||"<tr><td>Belum ada kategori.</td></tr>"}</table></div>`;
+ else T.innerHTML=`<form class="fm" id="sf" style="max-width:560px"><label>Nama toko<input name="name" maxlength="40" value="${esc(S.name)}" required></label><label>Nomor WhatsApp penjual (format 62…)<input name="wa" value="${esc(S.wa)}" inputmode="numeric" pattern="[0-9]{9,15}" required></label><label>Alamat<input name="address" maxlength="150" value="${esc(S.address)}"></label><label>Email<input name="email" type="email" value="${esc(S.email)}"></label><label>Judul banner<input name="hero" maxlength="80" value="${esc(S.hero)}"></label><label>Label promo<input name="tag" maxlength="40" value="${esc(S.tag)}"></label><label>Tentang toko<textarea name="about" rows="3" maxlength="400">${esc(S.about)}</textarea></label><div class="acts"><button class="btn" type="submit">Simpan Info Toko</button></div></form>`;
+}
+function openPF(id){
+ editId=id||null;const p=id?P.find(x=>x.id===id):null,f=$("#pForm");f.reset();
+ $("#pfT").textContent=p?"Edit Produk":"Tambah Produk";
+ f.category.innerHTML=(S.categories||[]).map(c=>`<option>${esc(c)}</option>`).join("");
+ if(p){f.name.value=p.name;f.price.value=p.price;f.stock.value=p.stock;f.sold.value=p.sold||0;f.category.value=p.category;f.desc.value=p.desc}
+ $("#mPf").classList.add("on");
+}
+function resize(file){return new Promise((res,rej)=>{const im=new Image(),u=URL.createObjectURL(file);im.onload=()=>{const m=900,r=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*r);c.height=Math.round(im.height*r);c.getContext("2d").drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);c.toBlob(b=>b?res(b):rej(new Error("Gagal memproses gambar")),"image/jpeg",.82)};im.onerror=()=>rej(new Error("File bukan gambar valid"));im.src=u})}
+async function saveProduct(f){
+ const d={name:f.name.value.trim(),price:Math.round(+f.price.value),stock:Math.round(+f.stock.value),sold:Math.round(+f.sold.value||0),category:f.category.value,desc:f.desc.value.trim()};
+ if(!d.name||!d.desc||!d.category||!(d.price>=0)||!(d.stock>=0))return toast("Lengkapi semua kolom dengan benar (harga/stok tidak boleh negatif).","err");
+ const b=$("#pfBtn");b.disabled=true;b.textContent="Menyimpan…";
+ try{
+  const old=editId?P.find(x=>x.id===editId):null;d.image=old?old.image||"":"";
+  const file=f.file.files[0];
+  if(file){if(file.size>8e6)throw new Error("Foto terlalu besar");const blob=await resize(file),r=fb.st.ref(fb.stg,"products/"+Date.now()+".jpg");await fb.st.uploadBytes(r,blob,{contentType:"image/jpeg"});d.image=await fb.st.getDownloadURL(r)}
+  if(editId){await fb.fs.updateDoc(fb.fs.doc(fb.db,"products",editId),d)}
+  else{d.createdAt=Date.now();await fb.fs.addDoc(fb.fs.collection(fb.db,"products"),d)}
+  await loadProducts();renderStore();renderCart();tab("p");$("#mPf").classList.remove("on");toast("Produk disimpan ✅","ok");
+ }catch(e){toast("Gagal menyimpan: "+(e.code||e.message),"err")}
+ finally{b.disabled=false;b.textContent="Simpan"}
+}
+async function saveSettings(patch){
+ try{await fb.fs.setDoc(fb.fs.doc(fb.db,"settings","store"),patch,{merge:true});S={...S,...patch};renderStore();toast("Tersimpan ✅","ok");return true}
+ catch(e){toast("Gagal menyimpan: "+(e.code||e.message),"err");return false}
+}
+async function login(f){
+ try{const c=await fb.au.signInWithEmailAndPassword(fb.auth,f.e.value.trim(),f.p.value);await checkAdmin(c.user)}
+ catch(e){toast("Login gagal: email/password salah atau akun belum terdaftar.","err")}
+}
+async function checkAdmin(u){
+ isAdmin=false;
+ if(u){try{isAdmin=(await fb.fs.getDoc(fb.fs.doc(fb.db,"admins",u.uid))).exists()}catch(e){isAdmin=false}
+  if(!isAdmin){await fb.au.signOut(fb.auth);toast("Akun ini bukan admin.","err")}}
+ if(location.hash==="#admin")renderAdmin();
+}
+
+/* ============ Event ============ */
+document.addEventListener("click",async e=>{
+ const c=e.target.closest("[data-cat]");if(c){cat=c.dataset.cat;renderStore();return}
+ if(e.target.closest("[data-close]")){document.querySelectorAll(".modal.on").forEach(m=>m.classList.remove("on"));return}
+ if(e.target.classList.contains("modal")){e.target.classList.remove("on");return}
+ const t=e.target.closest("[data-tab]");if(t)return tab(t.dataset.tab);
+ const b=e.target.closest("[data-a]");if(!b)return;const id=b.dataset.id,a=b.dataset.a,p=P.find(x=>x.id===id);
+ if(a==="det")openDetail(id);
+ else if(a==="buy"){setQty(id,1);drawer(false);$("#mDet").classList.remove("on");$("#mCo").classList.add("on")}
+ else if(a==="ask"&&p)openWa(`Halo ${S.name}, saya tertarik dengan produk berikut:\n*${p.name}*\nHarga: ${rp(p.price)}\nApakah masih tersedia?`);
+ else if(a==="dq"){detQty=Math.max(1,detQty+ +b.dataset.d);$("#dq").textContent=detQty}
+ else if(a==="dadd"&&p){const q=(cart[id]||0)+detQty;if(q>p.stock)return toast("Stok hanya tersisa "+p.stock,"err");cart[id]=q;renderCart();$("#mDet").classList.remove("on");toast("Ditambahkan ke keranjang ✅","ok")}
+ else if(a==="inc")setQty(id,1);else if(a==="dec")setQty(id,-1);else if(a==="rm"){delete cart[id];renderCart()}
+ else if(a==="out"){await fb.au.signOut(fb.auth);isAdmin=false;renderAdmin()}
+ else if(a==="padd")openPF();else if(a==="pedit")openPF(id);
+ else if(a==="pdel"&&p&&confirm("Hapus produk “"+p.name+"”?")){try{await fb.fs.deleteDoc(fb.fs.doc(fb.db,"products",id));if(p.image){try{await fb.st.deleteObject(fb.st.ref(fb.stg,p.image))}catch(x){}}await loadProducts();renderStore();renderCart();tab("p");toast("Produk dihapus","ok")}catch(x){toast("Gagal menghapus: "+(x.code||x.message),"err")}}
+ else if(a==="cdel"){const l=[...S.categories];l.splice(+b.dataset.i,1);if(await saveSettings({categories:l}))tab("c")}
+});
+document.addEventListener("submit",async e=>{e.preventDefault();const f=e.target;
+ if(f.id==="coForm")doCheckout(f);else if(f.id==="pForm")saveProduct(f);else if(f.id==="lg")login(f);
+ else if(f.id==="cf"){const v=f.c.value.trim();if(!v)return;if((S.categories||[]).includes(v))return toast("Kategori sudah ada","err");if(await saveSettings({categories:[...(S.categories||[]),v]}))tab("c")}
+ else if(f.id==="sf"){const n=String(f.wa.value).replace(/\D/g,"");if(n.length<9)return toast("Nomor WhatsApp tidak valid","err");await saveSettings({name:f.name.value.trim(),wa:n,address:f.address.value.trim(),email:f.email.value.trim(),hero:f.hero.value.trim(),tag:f.tag.value.trim(),about:f.about.value.trim()})}
+});
+$("#q").addEventListener("input",renderStore);
+$("#bCart").onclick=()=>drawer(true);$("#cClose").onclick=$("#ov").onclick=()=>drawer(false);
+$("#bCo").onclick=()=>{if(!Object.keys(cart).length)return toast("Keranjang masih kosong.","err");drawer(false);$("#mCo").classList.add("on")};
+$("#bm").onclick=()=>$("#menu").classList.toggle("on");$("#menu").onclick=e=>{if(e.target.tagName==="A")$("#menu").classList.remove("on")};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){drawer(false);document.querySelectorAll(".modal.on").forEach(m=>m.classList.remove("on"))}});
+window.addEventListener("hashchange",route);
+
+/* ============ Start ============ */
+(async function init(){
+ ["#gNew","#gBest","#gAll"].forEach(s=>$(s).innerHTML='<div class="sk"></div><div class="sk"></div><div class="sk"></div><div class="sk"></div>');
+ try{await initFirebase()}catch(e){fb=null;toast("Firebase gagal dimuat, memakai mode demo.","err")}
+ await Promise.all([loadSettings(),loadProducts()]);
+ renderStore();renderCart();route();
+ if(fb)fb.au.onAuthStateChanged(fb.auth,u=>{if(u&&!isAdmin)checkAdmin(u)});
+ if(!LIVE)toast("Mode demo: data contoh. Hubungkan Firebase lewat PANDUAN.md","");
+ setTimeout(()=>$("#loader").classList.add("off"),300);
+})();
+</script>
+</body>
+</html>
